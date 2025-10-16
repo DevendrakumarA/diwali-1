@@ -1,270 +1,233 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Happy Diwali</title>
-  <style>
-    body {
-      height: 100vh;
-      background-color: #ffffff;
-      background-image: linear-gradient(#ff000080, #ffa50080);
-      justify-content: center;
-      text-align: center;
-      overflow: hidden;
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Happy Diwali</title>
+<style>
+  /* ---------- BASE STYLES ---------- */
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(135deg, #ff000080, #ffa50080);
+    color: #fff;
+    text-align: center;
+    font-family: cursive;
+  }
+
+  #firework-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+  }
+
+  .text-container {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1000px;
+  }
+
+  .reveal-title {
+    font-size: clamp(24px, 6vw, 54px);
+    margin-bottom: 0.5em;
+    animation: revealTitle 1s ease forwards;
+  }
+
+  @keyframes revealTitle {
+    from {
+      clip-path: inset(0 100% 0 0);
     }
-
-    .text-container {
-      position: absolute;
-      color: #ffffff;
-      width: 100vw;
-      text-align: center;
-      top: 10%;
-      justify-items: center;
+    to {
+      clip-path: inset(0 0 0 0);
     }
+  }
 
-    .reveal-title,
-    .reveal-title::after {
-      animation-delay: 1s;
-      animation-iteration-count: 1;
-      animation-duration: 800ms;
-      animation-fill-mode: both;
-      animation-timing-function: cubic-bezier(0.0, 0.0, 0.25, 1);
+  p {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: clamp(14px, 2.5vw, 18px);
+    line-height: 1.6;
+  }
+
+  p span {
+  
+    display: block;
+    opacity: 0;
+    animation: fadeIn 2s forwards 2.5s;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* ---------- DIYA & LIGHT ---------- */
+  .container {
+    position: absolute;
+    left: 50%;
+    bottom: -5%;
+    transform: translateX(-50%);
+    width: min(60vw, 400px);
+    aspect-ratio: 1 / 1;
+    opacity: 0;
+    animation: showMe 2s forwards 5s;
+  }
+
+  @keyframes showMe {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .shadow {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 5%;
+    height: 8%;
+    background-color: #80808040;
+    border-radius: 50%;
+    margin: auto;
+    width: 80%;
+  }
+
+  .diya {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 15%;
+    width: 80%;
+    height: 45%;
+    background-color: #fdcf0f;
+    border-radius: 0 0 50% 50%;
+    margin: auto;
+    overflow: hidden;
+  }
+
+  .line1, .line2, .dots {
+    position: absolute;
+    left: -5%;
+    width: 110%;
+    border-radius: 50%;
+  }
+
+  .line1 {
+    top: 0;
+    border-bottom: 5px solid #fff;
+  }
+
+  .line2 {
+    top: 40%;
+    border-bottom: 5px solid #fff;
+  }
+
+  .dots {
+    top: 20%;
+    border-bottom: 6px dotted #fd500a;
+  }
+
+  .light-flare {
+    position: absolute;
+    bottom: 60%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 15%;
+    background-color: #fd500a;
+    border-radius: 50%;
+  }
+
+  .light {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 100%;
+    aspect-ratio: 1/1;
+    background-color: #fff34f40;
+    border-radius: 50%;
+  }
+
+  .light::before,
+  .light::after {
+    content: "";
+    position: absolute;
+    height: 35%;
+    width: 35%;
+    background-color: #fff34f80;
+    border-radius: 50%;
+    animation: shine 4s linear infinite;
+  }
+
+  .light::before {
+    bottom: 20%;
+    right: 20%;
+  }
+
+  .light::after {
+    top: 25%;
+    left: 25%;
+    animation-delay: 1s;
+  }
+
+  @keyframes shine {
+    50% { transform: scale(0.75); opacity: 0.3; }
+  }
+
+  .flame {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) rotate(-45deg);
+    width: 70%;
+    aspect-ratio: 1/1;
+    background-color: #fdf1c2;
+    border-radius: 100% 0;
+    animation: burn 3s infinite;
+  }
+
+  .flame::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 70%;
+    height: 70%;
+    background-color: #ffbd2e80;
+    border-radius: 100% 0;
+  }
+
+  @keyframes burn {
+    50% {
+      transform: translateX(-50%) rotate(-45deg) scale(1.1);
     }
+  }
 
-    .reveal-title {
-      position: relative;
-      font-family: cursive;
-      font-size: clamp(24px, 5vw, 54px);
-      padding: 1.25% 0 2.5%;
-      white-space: nowrap;
-      animation-name: revealTitle;
-    }
+  /* ---------- MEDIA QUERIES ---------- */
+  @media (max-height: 600px) {
+    .text-container { top: 5%; }
+    .container { bottom: 0; width: 50vw; }
+  }
 
-    .reveal-title::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: #fdf1c2;
-      transform: scaleX(0);
-      transform-origin: 0 50%;
-      z-index: 2;
-      animation-name: titleOverlay;
-      pointer-events: none;
-    }
-
-    @keyframes revealTitle {
-      from {
-        clip-path: inset(0 100% 0 0);
-      }
-
-      to {
-        clip-path: inset(0 0 0 0);
-      }
-    }
-
-    @keyframes titleOverlay {
-      0%,
-      50% {
-        transform-origin: 0 50%;
-      }
-
-      60% {
-        transform: scaleX(1);
-        transform-origin: 100% 50%;
-      }
-
-      100% {
-        transform: scaleX(0);
-        transform-origin: 100% 50%;
-      }
-    }
-
-    p {
-      font-family: 'Courier New', Courier, monospace;
-      font-size: 18px;
-      line-height: 2;
-    }
-
-    p span {
-      display: block;
-      opacity: 0;
-      animation: showMe 2s forwards 2.5s;
-    }
-
-    .container {
-      position: absolute;
-      left: 50%;
-      bottom: 0;
-      transform: translateX(-50%);
-      height: 50vh;
-      width: 50vw;
-      max-width: 500px;
-      max-height: 500px;
-      opacity: 0;
-      animation: showMe 2s forwards 5s;
-    }
-
-    @keyframes showMe {
-      from {
-        opacity: 0;
-      }
-
-      to {
-        opacity: 1;
-      }
-    }
-
-    .shadow {
-      position: absolute;
-      left: 0;
-      bottom: 30px;
-      right: 0;
-      height: 60px;
-      width: 320px;
-      background-color: #80808040;
-      border-radius: 50%;
-      margin: auto;
-    }
-
-    .diya {
-      position: absolute;
-      left: 0;
-      bottom: 50px;
-      right: 0;
-      height: 150px;
-      width: 300px;
-      background-color: #fdcf0f;
-      border-radius: 0 0 150px 150px;
-      margin: auto;
-      overflow: hidden;
-    }
-
-    .line1,
-    .line2 {
-      position: absolute;
-      left: -10px;
-      height: 60px;
-      width: 320px;
-      border: none;
-      border-bottom: 8px solid #ffffff;
-      border-radius: 50%;
-    }
-
-    .line2 {
-      top: 60px;
-    }
-
-    .dots {
-      position: absolute;
-      top: 30px;
-      left: -10px;
-      height: 60px;
-      width: 320px;
-      border: none;
-      border-bottom: 10px dotted #fd500a;
-      border-radius: 50%;
-    }
-
-    .light-flare {
-      position: absolute;
-      left: 0;
-      bottom: 170px;
-      right: 0;
-      height: 60px;
-      width: 300px;
-      background-color: #fd500a;
-      border-radius: 50%;
-      margin: auto;
-    }
-
-    .light {
-      position: absolute;
-      left: -15px;
-      bottom: 0;
-      height: 330px;
-      width: 330px;
-      background-color: #fff34f40;
-      border-radius: 50%;
-    }
-
-    .light::before,
-    .light::after {
-      content: "";
-      position: absolute;
-      height: 120px;
-      width: 120px;
-      background-color: #fff34f80;
-      border-radius: 50%;
-      animation: shiningLight 4s linear infinite;
-    }
-
-    .light::before {
-      bottom: 30px;
-      right: 60px;
-    }
-
-    .light::after {
-      top: 50px;
-      left: 80px;
-      animation-delay: 1s;
-    }
-
-    @keyframes shiningLight {
-      50% {
-        transform: scale(0.75);
-        opacity: 0.25;
-      }
-    }
-
-    .flame {
-      position: absolute;
-      left: 0;
-      bottom: 36px;
-      right: 0;
-      transform: rotate(-45deg);
-      height: 170px;
-      width: 170px;
-      background-color: #fdf1c2;
-      border-radius: 160px 0;
-      margin: auto;
-      animation: burningFlame 4s infinite;
-    }
-
-    .flame::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      height: 120px;
-      width: 120px;
-      background-color: #ffbd2e80;
-      border-radius: 120px 0;
-    }
-
-    @keyframes burningFlame {
-      50% {
-        bottom: 42px;
-        transform: rotate(-45deg) scale(1.1);
-      }
-    }
-
-    #firework-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: -1;
-    }
-  </style>
+  @media (max-width: 400px) {
+    .reveal-title { font-size: 28px; }
+    p { font-size: 14px; }
+  }
+</style>
 </head>
 
 <body>
+  <canvas id="firework-bg"></canvas>
+
   <div class="text-container">
     <h1 class="reveal-title" id="greeting-title">✨🪔 Happy Diwali! 🪔✨</h1>
     <p>
@@ -286,13 +249,10 @@
     </div>
   </div>
 
-  <canvas id="firework-bg"></canvas>
-
   <script>
-    // Ask user for name and store it
-    document.addEventListener("DOMContentLoaded", function () {
+    // --- Personalized Greeting using localStorage ---
+    document.addEventListener("DOMContentLoaded", () => {
       let name = localStorage.getItem("visitorName");
-
       if (!name) {
         name = prompt("🎇 Please enter your name to celebrate Diwali 🎇");
         if (name && name.trim() !== "") {
@@ -301,119 +261,89 @@
           name = "Friend";
         }
       }
-
-      const title = document.getElementById("greeting-title");
-      title.textContent = `✨🪔 Happy Diwali, ${name}! 🪔✨`;
+      document.getElementById("greeting-title").textContent = `✨🪔 Happy Diwali, ${name}! 🪔✨`;
     });
 
-    // Firework animation code (same as before)
-    window.addEventListener("orientationchange", resizeCanvas, false);
-    window.addEventListener("DOMContentLoaded", onLoad, false);
-    window.requestAnimationFrame = window.requestAnimationFrame || function (callback) {
-      window.setTimeout(callback, 1000 / 60);
-    };
-
-    var canvas, ctx, w, h, particles = [], probability = 0.05, xPoint, yPoint;
+    // --- Fireworks Animation ---
+    let canvas, ctx, w, h, particles = [], probability = 0.05, xPoint, yPoint;
+    window.addEventListener("resize", resizeCanvas);
+    window.addEventListener("DOMContentLoaded", onLoad);
 
     function resizeCanvas() {
-      window.scrollTo(0, 0);
-      if (!!canvas) {
+      if (canvas) {
         canvas.width = window.innerWidth;
-        w = window.innerWidth;
         canvas.height = window.innerHeight;
-        h = window.innerHeight;
+        w = canvas.width;
+        h = canvas.height;
       }
     }
 
     function onLoad() {
-      window.scrollTo(0, 0);
       canvas = document.getElementById("firework-bg");
       ctx = canvas.getContext("2d");
       resizeCanvas();
-      setTimeout(() => window.requestAnimationFrame(updateBg), 7500);
+      setTimeout(() => requestAnimationFrame(updateBg), 7500);
     }
 
     function updateBg() {
-      window.scrollTo(0, 0);
       update();
       fireInSky();
-      window.requestAnimationFrame(updateBg);
+      requestAnimationFrame(updateBg);
     }
 
     function update() {
-      if (particles.length < 900 && Math.random() < probability) {
-        createFirework();
-      }
-      var alive = [];
-      for (var i = 0; i < particles.length; i++) {
-        if (particles[i].move()) {
-          alive.push(particles[i]);
-        }
-      }
-      particles = alive;
+      if (particles.length < 900 && Math.random() < probability) createFirework();
+      particles = particles.filter(p => p.move());
     }
 
     function fireInSky() {
       ctx.globalCompositeOperation = "source-over";
-      ctx.fillStyle = `rgba(${Math.random() * 33}, ${Math.random() * 33}, ${Math.random() * 33}, 0.25)`;
+      ctx.fillStyle = "rgba(0,0,0,0.25)";
       ctx.fillRect(0, 0, w, h);
       ctx.globalCompositeOperation = "lighter";
-      for (var i = 0; i < particles.length; i++) {
-        particles[i].draw(ctx);
-      }
+      particles.forEach(p => p.draw(ctx));
     }
 
     function createFirework() {
       xPoint = Math.random() * (w - 200) + 100;
       yPoint = Math.random() * (h - 200) + 100;
-      var nFire = Math.random() * 50 + 100;
-      var c = `rgb(${Math.random() * 200 + 55}, ${Math.random() * 200 + 55}, ${Math.random() * 200 + 55})`;
-      for (var i = 0; i < nFire; i++) {
-        var particle = new Particle();
-        particle.color = c;
-        var vy = Math.sqrt(25 - particle.vx * particle.vx);
-        if (Math.abs(particle.vy) > vy) {
-          particle.vy = particle.vy > 0 ? vy : -vy;
-        }
-        particles.push(particle);
+      const nFire = Math.random() * 50 + 100;
+      const color = `rgb(${Math.random() * 200 + 55}, ${Math.random() * 200 + 55}, ${Math.random() * 200 + 55})`;
+      for (let i = 0; i < nFire; i++) {
+        const p = new Particle(color);
+        particles.push(p);
       }
     }
 
-    function Particle() {
-      this.w = this.h = Math.random() * 4 + 1;
-      this.x = xPoint - this.w / 2;
-      this.y = yPoint - this.h / 2;
-      this.vx = (Math.random() - 0.5) * 10;
-      this.vy = (Math.random() - 0.5) * 10;
-      this.alpha = Math.random() * 0.5 + 0.5;
-      this.color;
-    }
-
-    Particle.prototype = {
-      gravity: 0.05,
-      move: function () {
+    class Particle {
+      constructor(color) {
+        this.w = this.h = Math.random() * 4 + 1;
+        this.x = xPoint - this.w / 2;
+        this.y = yPoint - this.h / 2;
+        this.vx = (Math.random() - 0.5) * 10;
+        this.vy = (Math.random() - 0.5) * 10;
+        this.alpha = Math.random() * 0.5 + 0.5;
+        this.color = color;
+        this.gravity = 0.05;
+      }
+      move() {
         this.x += this.vx;
         this.vy += this.gravity;
         this.y += this.vy;
         this.alpha -= 0.01;
-        if (this.x <= -this.w || this.x >= screen.width || this.y >= screen.height || this.alpha <= 0) {
-          return false;
-        }
-        return true;
-      },
-      draw: function (c) {
+        return !(this.alpha <= 0 || this.y > h);
+      }
+      draw(c) {
         c.save();
         c.beginPath();
-        c.translate(this.x + (this.w / 2), this.y + (this.h / 2));
+        c.translate(this.x + this.w / 2, this.y + this.h / 2);
         c.arc(0, 0, this.w, 0, Math.PI * 2);
         c.fillStyle = this.color;
         c.globalAlpha = this.alpha;
-        c.closePath();
         c.fill();
         c.restore();
       }
-    };
+    }
   </script>
 </body>
-
 </html>
