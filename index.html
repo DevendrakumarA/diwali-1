@@ -1,228 +1,256 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Happy Diwali</title>
-<style>
-  /* ---------- BASE STYLES ---------- */
-  body {
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    width: 100vw;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: linear-gradient(135deg, #ff000080, #ffa50080);
-    color: #fff;
-    text-align: center;
-    font-family: cursive;
-  }
-
-  #firework-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: -1;
-  }
-
-  .text-container {
-    position: absolute;
-    top: 10%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
-    max-width: 1000px;
-  }
-
-  .reveal-title {
-    font-size: clamp(24px, 6vw, 54px);
-    margin-bottom: 0.5em;
-    animation: revealTitle 1s ease forwards;
-  }
-
-  @keyframes revealTitle {
-    from {
-      clip-path: inset(0 100% 0 0);
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Diwali</title>
+  <style>
+    /* ---------- BASE STYLES ---------- */
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-image: linear-gradient(135deg, #ff000080, #ffa50080);
+      color: #fff;
+      text-align: center;
+      font-family: cursive;
     }
-    to {
-      clip-path: inset(0 0 0 0);
+
+    #firework-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
     }
-  }
 
-  p {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: clamp(14px, 2.5vw, 18px);
-    line-height: 1.6;
-  }
-
-  p span {
-  
-    display: block;
-    opacity: 0;
-    animation: fadeIn 2s forwards 2.5s;
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-
-  /* ---------- DIYA & LIGHT ---------- */
-  .container {
-    position: absolute;
-    left: 50%;
-    bottom: -5%;
-    transform: translateX(-50%);
-    width: min(60vw, 400px);
-    aspect-ratio: 1 / 1;
-    opacity: 0;
-    animation: showMe 2s forwards 5s;
-  }
-
-  @keyframes showMe {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-
-  .shadow {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 5%;
-    height: 8%;
-    background-color: #80808040;
-    border-radius: 50%;
-    margin: auto;
-    width: 80%;
-  }
-
-  .diya {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 15%;
-    width: 80%;
-    height: 45%;
-    background-color: #fdcf0f;
-    border-radius: 0 0 50% 50%;
-    margin: auto;
-    overflow: hidden;
-  }
-
-  .line1, .line2, .dots {
-    position: absolute;
-    left: -5%;
-    width: 110%;
-    border-radius: 50%;
-  }
-
-  .line1 {
-    top: 0;
-    border-bottom: 5px solid #fff;
-  }
-
-  .line2 {
-    top: 40%;
-    border-bottom: 5px solid #fff;
-  }
-
-  .dots {
-    top: 20%;
-    border-bottom: 6px dotted #fd500a;
-  }
-
-  .light-flare {
-    position: absolute;
-    bottom: 60%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80%;
-    height: 15%;
-    background-color: #fd500a;
-    border-radius: 50%;
-  }
-
-  .light {
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-    transform: translateX(-50%);
-    width: 100%;
-    aspect-ratio: 1/1;
-    background-color: #fff34f40;
-    border-radius: 50%;
-  }
-
-  .light::before,
-  .light::after {
-    content: "";
-    position: absolute;
-    height: 35%;
-    width: 35%;
-    background-color: #fff34f80;
-    border-radius: 50%;
-    animation: shine 4s linear infinite;
-  }
-
-  .light::before {
-    bottom: 20%;
-    right: 20%;
-  }
-
-  .light::after {
-    top: 25%;
-    left: 25%;
-    animation-delay: 1s;
-  }
-
-  @keyframes shine {
-    50% { transform: scale(0.75); opacity: 0.3; }
-  }
-
-  .flame {
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%) rotate(-45deg);
-    width: 70%;
-    aspect-ratio: 1/1;
-    background-color: #fdf1c2;
-    border-radius: 100% 0;
-    animation: burn 3s infinite;
-  }
-
-  .flame::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    width: 70%;
-    height: 70%;
-    background-color: #ffbd2e80;
-    border-radius: 100% 0;
-  }
-
-  @keyframes burn {
-    50% {
-      transform: translateX(-50%) rotate(-45deg) scale(1.1);
+    .text-container {
+      position: absolute;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 1000px;
     }
-  }
 
-  /* ---------- MEDIA QUERIES ---------- */
-  @media (max-height: 600px) {
-    .text-container { top: 5%; }
-    .container { bottom: 0; width: 50vw; }
-  }
+    .reveal-title {
+      font-size: clamp(24px, 6vw, 54px);
+      margin-bottom: 0.5em;
+      animation: revealTitle 1s ease forwards;
+    }
 
-  @media (max-width: 400px) {
-    .reveal-title { font-size: 28px; }
-    p { font-size: 14px; }
-  }
-</style>
+    @keyframes revealTitle {
+      from {
+        clip-path: inset(0 100% 0 0);
+      }
+
+      to {
+        clip-path: inset(0 0 0 0);
+      }
+    }
+
+    p {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: clamp(14px, 2.5vw, 18px);
+      line-height: 1.6;
+    }
+
+    p span {
+
+      display: block;
+      opacity: 0;
+      animation: fadeIn 2s forwards 2.5s;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* ---------- DIYA & LIGHT ---------- */
+    .container {
+      position: absolute;
+      left: 50%;
+      bottom: -5%;
+      transform: translateX(-50%);
+      width: min(60vw, 400px);
+      aspect-ratio: 1 / 1;
+      opacity: 0;
+      animation: showMe 2s forwards 5s;
+    }
+
+    @keyframes showMe {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    .shadow {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 5%;
+      height: 8%;
+      background-color: #80808040;
+      border-radius: 50%;
+      margin: auto;
+      width: 80%;
+    }
+
+    .diya {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 15%;
+      width: 80%;
+      height: 45%;
+      background-color: #fdcf0f;
+      border-radius: 0 0 50% 50%;
+      margin: auto;
+      overflow: hidden;
+    }
+
+    .line1,
+    .line2,
+    .dots {
+      position: absolute;
+      left: -5%;
+      width: 110%;
+      border-radius: 50%;
+    }
+
+    .line1 {
+      top: 0;
+      border-bottom: 5px solid #fff;
+    }
+
+    .line2 {
+      top: 40%;
+      border-bottom: 5px solid #fff;
+    }
+
+    .dots {
+      top: 20%;
+      border-bottom: 6px dotted #fd500a;
+    }
+
+    .light-flare {
+      position: absolute;
+      bottom: 60%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      height: 15%;
+      background-color: #fd500a;
+      border-radius: 50%;
+    }
+
+    .light {
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      width: 100%;
+      aspect-ratio: 1/1;
+      background-color: #fff34f40;
+      border-radius: 50%;
+    }
+
+    .light::before,
+    .light::after {
+      content: "";
+      position: absolute;
+      height: 35%;
+      width: 35%;
+      background-color: #fff34f80;
+      border-radius: 50%;
+      animation: shine 4s linear infinite;
+    }
+
+    .light::before {
+      bottom: 20%;
+      right: 20%;
+    }
+
+    .light::after {
+      top: 25%;
+      left: 25%;
+      animation-delay: 1s;
+    }
+
+    @keyframes shine {
+      50% {
+        transform: scale(0.75);
+        opacity: 0.3;
+      }
+    }
+
+    .flame {
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%) rotate(-45deg);
+      width: 70%;
+      aspect-ratio: 1/1;
+      background-color: #fdf1c2;
+      border-radius: 100% 0;
+      animation: burn 3s infinite;
+    }
+
+    .flame::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      width: 70%;
+      height: 70%;
+      background-color: #ffbd2e80;
+      border-radius: 100% 0;
+    }
+
+    @keyframes burn {
+      50% {
+        transform: translateX(-50%) rotate(-45deg) scale(1.1);
+      }
+    }
+
+    /* ---------- MEDIA QUERIES ---------- */
+    @media (max-height: 600px) {
+      .text-container {
+        top: 5%;
+      }
+
+      .container {
+        bottom: 0;
+        width: 50vw;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .reveal-title {
+        font-size: 28px;
+      }
+
+      p {
+        font-size: 14px;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -252,17 +280,32 @@
   <script>
     // --- Personalized Greeting using localStorage ---
     document.addEventListener("DOMContentLoaded", () => {
-      let name = localStorage.getItem("visitorName");
-      if (!name) {
+      const EXPIRATION_TIME = 60 * 1000;
+      const storedData = JSON.parse(localStorage.getItem("visitorData"));
+      const now = Date.now();
+
+      let name;
+
+      if (storedData && now - storedData.timestamp < EXPIRATION_TIME) {
+
+        name = storedData.name;
+      } else {
+
         name = prompt("🎇 Please enter your name to celebrate Diwali 🎇");
         if (name && name.trim() !== "") {
-          localStorage.setItem("visitorName", name.trim());
+          name = name.trim();
         } else {
           name = "Friend";
         }
+        localStorage.setItem(
+          "visitorData",
+          JSON.stringify({ name, timestamp: now })
+        );
       }
+
       document.getElementById("greeting-title").textContent = `✨🪔 Happy Diwali, ${name}! 🪔✨`;
     });
+
 
     // --- Fireworks Animation ---
     let canvas, ctx, w, h, particles = [], probability = 0.05, xPoint, yPoint;
@@ -346,4 +389,5 @@
     }
   </script>
 </body>
+
 </html>
